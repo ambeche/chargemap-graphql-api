@@ -1,0 +1,25 @@
+{
+  "name": "chargemap-graphql-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.metropolia.fi/sssf-20211/week-3/chargemap-graphql-api.git"
+  },
+  "author": "tamanji@metropolia.fi",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint-config-google": "^0.14.0"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.22.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3"
+  }
+}
