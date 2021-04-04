@@ -7,4 +7,4 @@ const connectionTypeSchema = new mongoose.Schema({
 });
 
 export default mongoose.model('ConnectionType', connectionTypeSchema);
-  
+
