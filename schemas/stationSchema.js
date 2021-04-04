@@ -19,12 +19,12 @@ export default gql`
   }
 
   type Station {
-    Title: String,
-    Town: String,
-    AddressLine1: String,
-    StateOrProvince: String,
-    Postcode: String,
-    Location: Point,
-    Connections: [Connection]
+    Title: String!,
+    Town: String!,
+    AddressLine1: String!,
+    StateOrProvince: String!,
+    Postcode: String!,
+    Location: Point!,
+    Connections: [Connection]!
   }
 `;
