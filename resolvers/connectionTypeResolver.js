@@ -6,5 +6,10 @@ export default {
     connectionTypes: async () => {
       return await ConnectionType.find({});
     }
+  },
+  Connection: {
+    ConnectionTypeID: async (parent) => {
+      return await ConnectionType.findById(parent.ConnectionTypeID);
+    }
   }
 }

@@ -1,11 +1,16 @@
 'use strict';
 
-import currentType from "../models/currentType.js";
+import CurrentType from "../models/currentType.js";
 
 export default {
   Query: {
     currentTypes: async () => {
-      return await currentType.find({});
+      return await CurrentType.find({});
+    }
+  },
+  Connection: {
+    CurrentTypeID: async (parent) => {
+      return await CurrentType.findById(parent.CurrentTypeID);
     }
   }
 }

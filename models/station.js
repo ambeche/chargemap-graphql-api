@@ -1,5 +1,5 @@
 'use strict';
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const stationSchema = new mongoose.Schema({
   Title: String,
@@ -24,13 +24,13 @@ const stationSchema = new mongoose.Schema({
 
 });
 
-stationSchema.set('toJSON', {
-  transform: (document, result) => {
-    result.id = result._id.toString();
-    delete result._id;
-    delete result.__v;
-  },
-});
+// stationSchema.set('toJSON', {
+//   transform: (document, result) => {
+//     result.id = result._id.toString();
+//     delete result._id;
+//     delete result.__v;
+//   },
+// });
 
 
-module.exports = mongoose.model('Station', stationSchema);
+export default mongoose.model('Station', stationSchema);

@@ -22,6 +22,6 @@ export default [
   connectionTypeSchema,
   levelSchema,
   connectionSchema,
-  pointSchema,
   stationSchema,
+  pointSchema,
 ];

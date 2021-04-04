@@ -8,14 +8,14 @@ export default gql`
 
   extend type Mutation {
     addStation(
-      Title: String,
-      Town: String,
-      AddressLine1: String,
-      StateOrProvince: String,
-      Postcode: String,
-      Location: PointInput,
-      Connections: [ConnectionInput],
-    ): Station
+      Title: String!,
+      Town: String!,
+      AddressLine1: String!,
+      StateOrProvince: String!,
+      Postcode: String!,
+      Location: PointInput!,
+      Connections: [ConnectionInput]!,
+    ): Station!
   }
 
   type Station {

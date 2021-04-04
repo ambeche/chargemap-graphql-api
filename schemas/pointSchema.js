@@ -7,6 +7,6 @@ export default gql`
   }
 
   type Point {
-    coordinates: [Float!]
+    coordinates: [Float!]!
    }
 `;

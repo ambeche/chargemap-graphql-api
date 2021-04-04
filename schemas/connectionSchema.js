@@ -8,9 +8,9 @@ export default gql`
   type Connection {
     id: ID,
     Quantity: Int,
-    ConnectionTypeID: ID,
-    CurrentTypeID: ID
-    LevelID: ID
+    ConnectionTypeID: ConnectionType,
+    CurrentTypeID: CurrentType,
+    LevelID: LevelType,
   }
   input ConnectionInput {
     Quantity: Int,

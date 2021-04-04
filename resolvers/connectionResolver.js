@@ -6,5 +6,5 @@ export default {
     connections: async () => {
       return await Connection.find({})
     }
-  }
+  },
 }
