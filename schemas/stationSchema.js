@@ -16,10 +16,26 @@ export default gql`
       Postcode: String!,
       Location: PointInput!,
       Connections: [ConnectionInput]!,
-    ): Station!
+    ): Station!,
+
+    modifyStation(
+      id: ID!,
+      Title: String,
+      Town: String,
+      AddressLine1: String,
+      StateOrProvince: String,
+      Postcode: String,
+      Location: PointInput,
+      Connections: [ConnectionInput],
+    ): Station!,
+
+    deleteStation(
+      id: ID!
+    ): Station
   }
 
   type Station {
+    id: ID
     Title: String,
     Town: String,
     AddressLine1: String,

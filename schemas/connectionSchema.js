@@ -13,6 +13,7 @@ export default gql`
     LevelID: LevelType,
   }
   input ConnectionInput {
+    id: ID
     Quantity: Int,
     ConnectionTypeID: ID,
     CurrentTypeID: ID

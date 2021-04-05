@@ -45,6 +45,37 @@ export default {
         console.error("addStation error", e.message);
       }
     },
+    modifyStation: async (parent, args) => {
+      try {
+        // extract connection ids from station's connection field to be saved as ref to Connection in station doc in db
+        const connectionIDs = args.Connections
+          ? args.Connections.map((conn) => conn.id)
+          : undefined;
+        const newUpdate = {...args};
+        newUpdate.Connections = connectionIDs;
+
+        return await (
+          await Station.findOneAndUpdate(args.id, newUpdate, {
+            new: true,
+            omitUndefined: true,
+          })
+        )
+      } catch (e) {
+        console.log("modifyStation error", e.message);
+      }
+    },
+    deleteStation: async (parent, args) => {
+      try {
+        const isInDB = await Station.findById(args.id)
+        if(isInDB)  {
+          await Station.findByIdAndRemove(args.id) // deleted
+          return isInDB // return the state of the before it was deleted: for confirmation.
+        }
+        return null
+      }catch (e) {
+        console.log('e', e.message)
+      }
+    }
   },
 
   Query: {
@@ -68,7 +99,7 @@ export default {
             .limit(limit)
             .populate("Connections");
         } else if (args.bounds) {
-          console.log('bounds', args.bounds)
+          console.log("bounds", args.bounds);
           // filtering by geo polygon
           const northEast = args.bounds._northEast;
           const southWest = args.bounds._southWest;
