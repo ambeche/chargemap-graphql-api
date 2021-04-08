@@ -73,8 +73,35 @@
 
 ## Query:
  * ### stations
+        
+        stations {
+                Title
+                Town
+                AddressLine1
+                Location {
+                type
+                coordinates
+                }
+                Connections {
+                Quantity
+                ConnectionTypeID {
+                    Title
+                }
+                CurrentTypeID {
+                    Title
+                }
+                LevelID {
+                    Title
+                    Comments
+                    IsFastChargeCapable
+                }
+                }
+            }
+        }
+        
 
-        # filtering by geo polygon/ boundaries     
+        # filtering by geo polygon/ boundaries 
+
             {
         stations(bounds: {_southWest: {lat: 60.0918986743294, lng: 24.60319519042969}, _northEast: {lat: 60.38196898834704, lng: 24.94033813476563}}, limit:5) {
             Title
