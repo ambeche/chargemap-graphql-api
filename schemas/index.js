@@ -7,6 +7,7 @@ import connectionSchema from './connectionSchema.js';
 import pointSchema from './pointSchema.js';
 import stationSchema from './stationSchema.js';
 import boundsInputSchema from './boundsInputSchema.js';
+import userSchema from './userSchema.js';
 
 const root = gql`
    type Query {
@@ -26,4 +27,5 @@ export default [
   stationSchema,
   pointSchema,
   boundsInputSchema,
+  userSchema
 ];
