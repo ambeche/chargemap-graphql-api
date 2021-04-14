@@ -2,10 +2,17 @@
 import Station from "../models/station.js";
 import Connection from "../models/connection.js";
 import rectangleBounds from "../helper.js";
+import {AuthenticationError} from "apollo-server-errors";
 
+const verifyAuthentication = (user) => {
+  if (!user) {
+    throw new AuthenticationError('You are not authenticated');
+  }
+}
 export default {
   Mutation: {
-    addStation: async (parent, args) => {
+    addStation: async (parent, args, {user}) => {
+      verifyAuthentication(user) // check and throw error if user is not authenticated
       try {
         // creates connections for station and save to db using Promise.all
         const connectionDocs = args.Connections.map(
@@ -45,7 +52,8 @@ export default {
         console.error("addStation error", e.message);
       }
     },
-    modifyStation: async (parent, args) => {
+    modifyStation: async (parent, args, {user}) => {  
+      verifyAuthentication(user) 
       try {
         // extract connection ids from station's connection field to be saved as ref to Connection in station doc in db
         const connectionIDs = args.Connections
@@ -64,7 +72,8 @@ export default {
         console.log("modifyStation error", e.message);
       }
     },
-    deleteStation: async (parent, args) => {
+    deleteStation: async (parent, args, {user}) => {
+      verifyAuthentication(user)
       try {
         const isInDB = await Station.findById(args.id)
         if(isInDB)  {
@@ -74,6 +83,7 @@ export default {
         return null
       }catch (e) {
         console.log('e', e.message)
+        throw new AuthenticationError('You are not authenticated');
       }
     }
   },
