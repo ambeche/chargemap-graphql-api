@@ -6,6 +6,8 @@ import schemas from './schemas/index.js';
 import resolvers from './resolvers/index.js';
 import express from 'express';
 import mongoDB from './db/mongoDB.js';
+import production from  './ssl/production.js';
+import localhost from './ssl/localhost.js'
 import {verifyAuth} from './auth/auth.js';
 
 
@@ -27,10 +29,14 @@ import {verifyAuth} from './auth/auth.js';
        server.applyMiddleware({app});
    
        mongoDB.on('connected', () => {
-         app.listen(process.env.PORT, () =>
-         console.log(
-             `🚀 Server ready at http://localhost:3000${server.graphqlPath}`),
-     );
+         process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+    if (process.env.NODE_ENV === 'production') {
+      console.log('prduction');
+      production(app, process.env.PORT);
+    } else {
+      console.log('localhost');
+      localhost(app, process.env.HTTPS_PORT,process.env.PORT );
+    }
        })
    } catch (e) {
       console.log('server error: ', e);
