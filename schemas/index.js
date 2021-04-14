@@ -27,5 +27,5 @@ export default [
   stationSchema,
   pointSchema,
   boundsInputSchema,
-  userSchema
+  userSchema,
 ];
