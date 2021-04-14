@@ -2,6 +2,7 @@
 import env from 'dotenv';
 env.config();
 import {ApolloServer} from 'apollo-server-express';
+import helmet from 'helmet'
 import schemas from './schemas/index.js';
 import resolvers from './resolvers/index.js';
 import express from 'express';
@@ -25,6 +26,10 @@ import {verifyAuth} from './auth/auth.js';
       });
    
        const app = express();
+       app.use(helmet({
+         ieNoOpen: false    // disabling X-Download-Options
+       }));
+       
    
        server.applyMiddleware({app});
    
