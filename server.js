@@ -6,6 +6,8 @@ import schemas from './schemas/index.js';
 import resolvers from './resolvers/index.js';
 import express from 'express';
 import mongoDB from './db/mongoDB.js';
+import {verifyAuth} from './auth/auth.js';
+
 
 
 
@@ -14,6 +16,10 @@ import mongoDB from './db/mongoDB.js';
       const server = new ApolloServer({
          typeDefs: schemas,
          resolvers,
+         context: async ({req, res}) => {
+            const user = await verifyAuth(req, res);
+            return {req, res, user};
+         },
       });
    
        const app = express();

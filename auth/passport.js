@@ -16,7 +16,7 @@ passport.use(new Strategy(
     async (username, password, done) => {
   
       try {
-        const user = await User.findone({username});
+        const user = await User.findOne({username});
         console.log('Local strategy', user);
         if (user === null ) {
           return done(null, false, {message: 'invalid credentials'});
@@ -28,7 +28,7 @@ passport.use(new Strategy(
           return done(null, false, {message: 'invalid credentials!'});
         }
 
-        const userWithoutPass = {...user}
+        const userWithoutPass = user.toObject()
         delete userWithoutPass.password // delete user's password for security
 
         return done(null, userWithoutPass, {message: 'Logged In Successfully'}); 
@@ -50,7 +50,7 @@ passport.use(new JWTStrategy({
     if (user === null) {
       return done(null, false);
     }
-
+    delete user.password
     return done(null, user); 
   } catch (err) {
     return done(err);

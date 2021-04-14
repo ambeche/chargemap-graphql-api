@@ -12,7 +12,7 @@ const login = (req, res) => {
         async (err, user, info) => {
           try {
             if (err || !user) {
-              reject(info.message);
+              reject(err.message);
             }
             req.login(user, {session: false}, async (err) => {
               if (err) {
@@ -29,7 +29,7 @@ const login = (req, res) => {
   });
 };
 
-const checkAuth = (req, res) => {
+const verifyAuth = (req, res) => {
   return new Promise((resolve, reject) => {
     passport.authenticate('jwt', (err, user) => {
       if (err || !user) {
@@ -42,5 +42,5 @@ const checkAuth = (req, res) => {
 
 export {
   login,
-  checkAuth,
+  verifyAuth,
 };
