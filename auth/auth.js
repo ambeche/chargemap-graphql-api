@@ -5,7 +5,6 @@ import passport from './passport.js';
 
 env.config();
 
-
 const login = (req, res) => {
   return new Promise((resolve, reject) => {
     passport.authenticate('local', {session: false},

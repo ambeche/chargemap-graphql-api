@@ -11,14 +11,13 @@ import production from  './ssl/production.js';
 import localhost from './ssl/localhost.js'
 import {verifyAuth} from './auth/auth.js';
 
-
-
-
 (async () => {
    try {
       const server = new ApolloServer({
          typeDefs: schemas,
          resolvers,
+         introspection: true,
+         playground: true,
          context: async ({req, res}) => {
             const user = await verifyAuth(req, res);
             return {req, res, user};
@@ -27,11 +26,12 @@ import {verifyAuth} from './auth/auth.js';
    
        const app = express();
        app.use(helmet({
-         ieNoOpen: false    // disabling X-Download-Options
+         ieNoOpen: false ,   // disabling X-Download-Options
+         contentSecurityPolicy: false
        }));
        
    
-       server.applyMiddleware({app});
+       server.applyMiddleware({app, path: '/graphql'});
    
        mongoDB.on('connected', () => {
          process.env.NODE_ENV = process.env.NODE_ENV || 'development';
