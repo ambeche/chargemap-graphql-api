@@ -1,6 +1,6 @@
 # Chargemap GraphQl API
 
-## Server URL:  http://tamanji.jelastic.metropolia.fi/graphql (please refresh the page if the response is 502)
+## Server URL-secured:  https://tamanji.jelastic.metropolia.fi/graphql (please refresh the page if the response is 502)
 
 ## Mutations:
  * ### addStation
